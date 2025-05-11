@@ -1,0 +1,26 @@
+{
+  "name": "shortener_url",
+  "version": "1.0.0",
+  "main": "Index.js",
+  "scripts": {
+    "start": "nodemon Index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.5.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.13.2",
+    "nanoid": "^5.1.5",
+    "nodemon": "^3.1.9",
+    "shortener_url": "file:",
+    "uuid": "^11.1.0",
+    "validator": "^13.15.0"
+  }
+}
