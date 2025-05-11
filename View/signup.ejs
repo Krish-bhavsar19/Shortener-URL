@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SignUp</title>
+  <script src="theme.js"></script>
+  <style>
+    :root {
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --container-bg: #1e1e1e;
+      --input-bg: #2a2a2a;
+      --input-border: #333;
+      --button-bg: #3498db;
+      --button-hover: #2177b1;
+      --title-color: #81c3f7;
+      --shadow-color: rgba(0, 0, 0, 0.3);
+    }
+
+    [data-theme="light"] {
+      --bg-color: #f5f5f5;
+      --text-color: #333;
+      --container-bg: #ffffff;
+      --input-bg: #f0f0f0;
+      --input-border: #ccc;
+      --button-bg: #3498db;
+      --button-hover: #2177b1;
+      --title-color: #2c5282;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-color: var(--bg-color);
+      margin: 0;
+      padding: 20px;
+      color: var(--text-color);
+      transition: all 0.3s ease;
+    }
+
+    .header {
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+      max-width: 400px;
+      padding: 10px;
+      position: absolute;
+      top: 0;
+      right: 20px;
+    }
+
+    .theme-toggle {
+      padding: 8px;
+      background-color: var(--button-bg);
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 43px;
+      height: 43px;
+      margin-top: 10px;
+    }
+
+    .theme-icon img {
+      width: 25px;
+      height: 25px;
+    }
+
+    .theme-toggle:hover {
+      background-color: var(--button-hover);
+    }
+
+    h1 {
+      color: var(--title-color);
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    form {
+      background-color: var(--container-bg);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px var(--shadow-color);
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    label {
+      font-weight: bold;
+      color: var(--text-color);
+    }
+
+    input[type="text"], input[type="password"] {
+      padding: 12px;
+      border: 2px solid var(--input-border);
+      border-radius: 5px;
+      font-size: 16px;
+      background-color: var(--input-bg);
+      color: var(--text-color);
+      width: 100%;
+      box-sizing: border-box;
+      transition: border-color 0.3s;
+    }
+
+    input[type="text"]:focus, input[type="password"]:focus {
+      border-color: var(--button-bg);
+      outline: none;
+    }
+
+    button {
+      background-color: var(--button-bg);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: var(--button-hover);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header">
+      <button class="theme-toggle" onclick="toggleTheme()">
+        <span class="theme-icon"><img src="light_mode.png" alt="Theme Icon"></span>
+      </button>
+    </div>
+  </header>
+
+  <h1>SignUp</h1>
+
+  <% if (locals.error) { %>
+    <p style="color: red; text-align: center; margin-bottom: 10px;"><%= error %></p>
+  <% } %>
+
+  <form action="/user" method="post">
+    <div class="form-group">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" placeholder="Enter your full name" required />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email" placeholder="Enter your email" required />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password" required />
+    </div>
+
+    <button type="submit">SignUp</button>
+  </form>
+</body>
+</html>
