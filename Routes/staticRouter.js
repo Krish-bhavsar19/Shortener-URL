@@ -1,5 +1,5 @@
 const express = require("express");
-const { restrictToLoggedinUserOnly } = require('../Middleware/auth');
+const { restrictToLoggedinUserOnly } = require('../middleware/auth');
 const { getUser } = require('../Service/auth');
 const URL = require("../Models/url");
 const router = express.Router();
