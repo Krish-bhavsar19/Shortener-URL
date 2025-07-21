@@ -573,6 +573,10 @@
                                         </span>
                                     </td>
                                     <td>
+                                        <%= new Date(url.createdAt).toLocaleDateString("en-IN", { year: "numeric" ,
+                                            month: "short" , day: "numeric" }) %>
+                                    </td>
+                                    <td>
                                         <button class="copy-btn"
                                             onclick="copyToClipboard('<%= baseUrl %>/<%= url.shortId %>')">
                                             Copy
@@ -580,6 +584,7 @@
                                     </td>
                                 </tr>
                                 <% }) %>
+
 
                         </tbody>
                     </table>
