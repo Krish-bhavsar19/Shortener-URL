@@ -26,6 +26,7 @@ app.use(cookieParser());
 app.use("/user", userRoute);
 app.use("/url", restrictToLoggedinUserOnly, urlRoute);
 app.use("/", staticRouter);
+app.set("trust proxy", true);
 
 app.get("/:shortId", async (req, res) => {
   const shortId = req.params.shortId;
