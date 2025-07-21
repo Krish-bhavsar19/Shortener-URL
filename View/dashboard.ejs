@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,7 @@
     <script src="theme.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
+
         :root {
             --bg-gradient: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%);
             --text-color: #e0e6ff;
@@ -73,7 +74,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
+            background-image:
                 radial-gradient(circle at 20% 20%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 40% 40%, rgba(120, 219, 226, 0.1) 0%, transparent 50%);
@@ -82,8 +83,15 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
         }
 
         .header {
@@ -197,6 +205,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -398,9 +407,17 @@
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
 
         .empty-state {
@@ -457,7 +474,8 @@
                 font-size: 12px;
             }
 
-            th, td {
+            th,
+            td {
                 padding: 12px 8px;
             }
 
@@ -467,9 +485,10 @@
         }
     </style>
 </head>
+
 <body>
     <div class="background-pattern"></div>
-    
+
     <header class="header">
         <div class="logo">LinkSnap</div>
         <nav class="nav-actions">
@@ -490,22 +509,30 @@
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-icon">🔗</div>
-                <div class="stat-number"><%= urls.length %></div>
+                <div class="stat-number">
+                    <%= urls.length %>
+                </div>
                 <div class="stat-label">Total URLs</div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon">📊</div>
-                <div class="stat-number"><%= urls.reduce((sum, url) => sum + url.visitHistory.length, 0) %></div>
+                <div class="stat-number">
+                    <%= urls.reduce((sum, url)=> sum + url.visitHistory.length, 0) %>
+                </div>
                 <div class="stat-label">Total Clicks</div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon">🔥</div>
-                <div class="stat-number"><%= urls.length > 0 ? Math.max(...urls.map(url => url.visitHistory.length)) : 0 %></div>
+                <div class="stat-number">
+                    <%= urls.length> 0 ? Math.max(...urls.map(url => url.visitHistory.length)) : 0 %>
+                </div>
                 <div class="stat-label">Top Clicks</div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon">⚡</div>
-                <div class="stat-number"><%= urls.filter(url => url.visitHistory.length > 0).length %></div>
+                <div class="stat-number">
+                    <%= urls.filter(url=> url.visitHistory.length > 0).length %>
+                </div>
                 <div class="stat-label">Active URLs</div>
             </div>
         </div>
@@ -516,7 +543,7 @@
                 <a href="/" class="create-btn">+ Create New URL</a>
             </div>
 
-            <% if (urls.length > 0) { %>
+            <% if (urls.length> 0) { %>
                 <div class="table-container">
                     <table>
                         <thead>
@@ -528,11 +555,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <% urls.forEach(url => { %>
+                            <% urls.forEach(url=> { %>
                                 <tr>
                                     <td>
-                                        <a href="/<%= url.shortId %>" target="_blank" class="short-url">
-                                            /<%= url.shortId %>
+                                        <a href="<%= baseUrl %>/<%= url.shortId %>" target="_blank" class="short-url">
+                                            <%= baseUrl %>/<%= url.shortId %>
                                         </a>
                                     </td>
                                     <td class="url-cell">
@@ -546,25 +573,27 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <button class="copy-btn" onclick="copyToClipboard('<%= fullUrl %>')">
+                                        <button class="copy-btn"
+                                            onclick="copyToClipboard('<%= baseUrl %>/<%= url.shortId %>')">
                                             Copy
                                         </button>
                                     </td>
                                 </tr>
-                            <% }) %>
+                                <% }) %>
+
                         </tbody>
                     </table>
                 </div>
-            <% } else { %>
-                <div class="empty-state">
-                    <div class="empty-icon">🔗</div>
-                    <h3 class="empty-title">No URLs Yet</h3>
-                    <p class="empty-description">
-                        You haven't created any shortened URLs yet. Click the button above to create your first one!
-                    </p>
-                    <a href="/" class="create-btn">Create Your First URL</a>
-                </div>
-            <% } %>
+                <% } else { %>
+                    <div class="empty-state">
+                        <div class="empty-icon">🔗</div>
+                        <h3 class="empty-title">No URLs Yet</h3>
+                        <p class="empty-description">
+                            You haven't created any shortened URLs yet. Click the button above to create your first one!
+                        </p>
+                        <a href="/" class="create-btn">Create Your First URL</a>
+                    </div>
+                    <% } %>
         </div>
     </main>
 
@@ -574,7 +603,7 @@
                 const originalText = button.textContent;
                 button.textContent = 'Copied!';
                 button.classList.add('copied');
-                
+
                 setTimeout(() => {
                     button.textContent = originalText;
                     button.classList.remove('copied');
@@ -605,7 +634,7 @@
         function toggleTheme() {
             const body = document.body;
             const themeIcon = document.querySelector('.theme-icon');
-            
+
             if (body.getAttribute('data-theme') === 'light') {
                 body.removeAttribute('data-theme');
                 themeIcon.textContent = '🌙';
@@ -622,8 +651,9 @@
             });
         });
     </script>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/ogl@0.0.49/src/index.min.js"></script>
     <script src="/particles.js"></script>
 </body>
+
 </html>
