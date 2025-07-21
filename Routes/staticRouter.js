@@ -26,7 +26,8 @@ router.get("/login", (req, res) => {
 
 router.get("/dashboard", restrictToLoggedinUserOnly, async (req, res) => {
     const urls = await URL.find({ createdBy: req.user._id });
-    return res.render("dashboard", { urls });
+    res.render("dashboard", { urls, baseUrl: process.env.BASE_URL });
+
 });
 
 router.get("/logout", (req, res) => {
