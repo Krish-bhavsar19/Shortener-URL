@@ -8,7 +8,7 @@
     <script src="theme.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
+
         :root {
             --bg-gradient: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%);
             --text-color: #e0e6ff;
@@ -68,7 +68,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
+            background-image:
                 radial-gradient(circle at 20% 20%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 40% 40%, rgba(120, 219, 226, 0.1) 0%, transparent 50%);
@@ -77,8 +77,15 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
         }
 
         .header {
@@ -190,6 +197,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -395,27 +403,28 @@
 
 <body>
     <div class="background-pattern"></div>
-    
+
     <header class="header">
         <div class="logo">LinkSnap</div>
         <nav class="nav-actions">
             <% if (user) { %>
                 <a href="/dashboard" class="nav-btn">Dashboard</a>
                 <a href="/logout" class="nav-btn primary">Logout</a>
-            <% } else { %>
-                <a href="/login" class="nav-btn">Login</a>
-                <a href="/signup" class="nav-btn primary">Sign Up</a>
-            <% } %>
-            <button class="theme-toggle" onclick="toggleTheme()">
-                <span class="theme-icon">🌙</span>
-            </button>
+                <% } else { %>
+                    <a href="/login" class="nav-btn">Login</a>
+                    <a href="/signup" class="nav-btn primary">Sign Up</a>
+                    <% } %>
+                        <button class="theme-toggle" onclick="toggleTheme()">
+                            <span class="theme-icon">🌙</span>
+                        </button>
         </nav>
     </header>
 
     <main class="main-content">
         <div class="hero-section">
             <h1 class="hero-title">Shorten Your Links</h1>
-            <p class="hero-subtitle">Create shorter, more manageable links that are perfect for sharing across any platform</p>
+            <p class="hero-subtitle">Create shorter, more manageable links that are perfect for sharing across any
+                platform</p>
         </div>
 
         <div class="container">
@@ -423,47 +432,42 @@
                 <div class="result">
                     <div class="result-label">Your shortened URL is ready!</div>
                     <div style="display: flex; align-items: center; gap: 12px;">
-                        <a href="http://localhost:8001/<%= id %>" target="_blank" class="result-url">
-                            http://localhost:8001/<%= id %>
+                        <a href="<%= fullUrl %>" target="_blank" class="result-url">
+                            <%= fullUrl %>
                         </a>
-                        <button class="copy-btn" onclick="copyToClipboard('http://localhost:8001/<%= id %>')">
+                        <button class="copy-btn" onclick="copyToClipboard('<%= fullUrl %>')">
                             Copy
                         </button>
                     </div>
                 </div>
-            <% } %>
+                <% } %>
 
-            <form action="/url" method="post" class="form-container">
-                <div class="input-group">
-                    <label for="url-input" class="input-label">Enter your original URL</label>
-                    <input 
-                        type="text" 
-                        id="url-input" 
-                        name="url" 
-                        class="input-field"
-                        placeholder="https://example.com/very-long-url-that-needs-shortening" 
-                        required 
-                    />
-                </div>
-                <button type="submit" class="submit-btn">
-                    Generate Short URL
-                </button>
-            </form>
 
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">99.9%</div>
-                    <div class="stat-label">Uptime</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">1M+</div>
-                    <div class="stat-label">Links Created</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">Fast</div>
-                    <div class="stat-label">Response</div>
-                </div>
-            </div>
+                    <form action="/url" method="post" class="form-container">
+                        <div class="input-group">
+                            <label for="url-input" class="input-label">Enter your original URL</label>
+                            <input type="text" id="url-input" name="url" class="input-field"
+                                placeholder="https://example.com/very-long-url-that-needs-shortening" required />
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            Generate Short URL
+                        </button>
+                    </form>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">99.9%</div>
+                            <div class="stat-label">Uptime</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">1M+</div>
+                            <div class="stat-label">Links Created</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">Fast</div>
+                            <div class="stat-label">Response</div>
+                        </div>
+                    </div>
         </div>
 
         <div class="footer">
@@ -489,7 +493,7 @@
         function toggleTheme() {
             const body = document.body;
             const themeIcon = document.querySelector('.theme-icon');
-            
+
             if (body.getAttribute('data-theme') === 'light') {
                 body.removeAttribute('data-theme');
                 themeIcon.textContent = '🌙';
@@ -506,7 +510,7 @@
             container.style.opacity = '1';
         });
     </script>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/ogl@0.0.49/src/index.min.js"></script>
     <script src="/particles.js"></script>
 </body>
