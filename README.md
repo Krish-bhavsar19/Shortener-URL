@@ -52,7 +52,7 @@ Index.js         # Main server file
 	```
 	node Index.js
 	```
-	The app will run on `http://localhost:3000` by default.
+	The app will run on `http://localhost:8001` by default.
 
 ## Usage
 - Visit `/signup` to create an account.
