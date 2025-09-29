@@ -59,9 +59,5 @@ Index.js         # Main server file
 - Log in at `/login`.
 - Use the dashboard to shorten URLs and manage your links.
 
-## Screenshots
-![Light Mode](public/light_mode.png)
-![Dark Mode](public/dark_mode.png)
-
 ## License
 This project is licensed under the MIT License.
